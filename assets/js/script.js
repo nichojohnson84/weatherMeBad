@@ -1,45 +1,65 @@
-/* all received via the link and api from cookbook redwood and one weather
-{
-    "coord": {
-    "lon": -122.09,
-    "lat": 37.39
-    },
-    "weather": [
-    {
-    "id": 500,
-    "main": "Rain",
-    "description": "light rain",
-    "icon": "10d"
-    }
-    ],
-    "base": "stations",
-    "main": {
-    "temp": 280.44,
-    "pressure": 1017,
-    "humidity": 61,
-    "temp_min": 279.15,
-    "temp_max": 281.15
-    },
-    "visibility": 12874,
-    "wind": {
-    "speed": 8.2,
-    "deg": 340,
-    "gust": 11.3
-    },
-    "clouds": {
-    "all": 1
-    },
-    "dt": 1519061700,
-    "sys": {
-    "type": 1,
-    "id": 392,
-    "message": 0.0027,
-    "country": "US",
-    "sunrise": 1519051894,
-    "sunset": 1519091585
-    },
-    "id": 0,
-    "name": "Mountain View",
-    "cod": 200
-    } */
+//addeventlistener for search button bring weather for city entered in the text box
+var button = document.getElementById ("btn")
+button.addEventListener ('click', getWeather)
+
+var cityResponse;
+var tempResponse;
+var humidityResponse;
+var uvIndexResponse;
+
+function getWeather (event) {
+    event.preventDefault ()
+    var localSearch = event.target.previousSibling.previousSibling.value
+    var geoSearch = "http://api.openweathermap.org/geo/1.0/direct?q="+localSearch+"&appid=48454c83470277fd99afd700c55b471f"
+    fetch (geoSearch)
+    .then (function (data){
+        return data.json ()
+    })
+    .then (function (response){
+        var lat = response[0].lat
+        var lon = response[0].lon
+        var oneCall = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&appid=48454c83470277fd99afd700c55b471f"
+        cityResponse = response
+        console.log (response)
+        fetch (oneCall)
+        .then (function (data){
+            return data.json ()
+        })
+        .then (function (response){
+        console.log (response)
+        displayCurrentWeather (response,cityResponse)
+        })
+        .then (function (response){
+            console.log (response)
+            displayCurrentTemp (response,tempResponse)
+        })
+    })
+}
+function displayCurrentWeather (weather,currentCity) {
+    console.log (weather)
+   
+    var city = document.getElementById ("city")
+    var temp = document.getElementById ("temp")
+    var humidity = document.getElementById ("humidity")
+    var uvIndex = document.getElementById ("uvIndex")
+    city.textContent = currentCity[0].name
+    temp.value = currentTemp[0].value
     
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
