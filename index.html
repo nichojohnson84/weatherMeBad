@@ -1,103 +1,120 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Be Good</title>
-    <link rel="icon" type="image/x-icon" href="./assets/images/Umbrella.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Link to css  -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+
+    <title>Weather Dashboard</title>
 </head>
+
 <body>
-<!--get Weather Dashboard across the top-->
-    <header>
-        <h1>Weather Dashboard</h1>
-    </header>
-<!--search function in the upper left that hopefully bring up a dropdown Results will go into main container-->
-    <div class="card" id="search-bar">
-        <h2>Search for a City</h2>
-        <form>
-            <div class="form">
-                <input type="text" class="form-control" id="name-input" placeholder="city" />
-                <button search="Search" id="btn">Search</button>
+
+
+    <div class="container">
+        <!-- Beginning of jumbotron  -->
+        <div class=" jumbotron-fluid bg-dark text-white text-center">
+            <div class="container">
+                <h1 class="display-4 ">Weather Dashboard</h1>
             </div>
-        </form>
-    </div>
-        
-<!--make sure to put in if else statements for the UV index so that you have the color coded categories (good, moderate, bad)-->
-  <h2>Current Weather</h2> <div class ="searchBox"></class>  
-    <main>
-        <div class="container" id="local">
-            <ul>
-            <li src = .img>image of weather</li>    
-            <li id ="city"></li>
-            <li id ="temp">current temp in Farenheit&deg; </li>
-            <li id ="humidity">Placholder</li>
-            <li id="uvIndex"><span aria-placeholder="98"></span> Coded</li>
-            </ul>
         </div>
-    </main>
-<!--have a container to the left under the search bar have a column with the search history-->
-        
-           <h2>5 Day Forcast</h2>
+        <!-- Beginning of row 1 -->
         <div class="row">
-            <div class="col-12 col-md-2" id="tomorrow"><h2>Tomorrow</h2>
-                <ul>
-                <li src = .img></li>
-                <li id ="city"></li>
-                <li id ="temp"></li>
-                <li id ="humidity"></li>
-                <li id="uvIndex"></li>
-                </ul>
-            </div>    
-            <div class="col-12 col-md-2" id="day2"><h2>Day 2</h2>
-                <ul>
-                <li src = .img></li>
-                <li id ="city"></li>
-                <li id ="temp"></li>
-                <li id ="humidity"></li>
-                <li id="uvIndex"></li>
-                </ul>
+            <!-- Beginning of col 1 in rwo 1 -->
+            <div class="col-3 m-2 bg-light">
+                <h3>Search for a City:</h3>
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="city-input" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button id="add-city" class="btn btn-outline-secondary bg-primary" type="button">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </button>
+                    </div>
+                </div>
+                <!-- Beginning of history cities box -->
+                <div class="card" style="width: 15rem;">
+                    <ul id="city-list" class="list-group list-group-flush">
+                        <!-- <li class="list-group-item"></li> -->
+                    </ul>
+                </div>
             </div>
-            <div class="col-12 col-md-2" id="day3"><h2>Day 3</h2>
-                <ul>
-                <li src = .img></li>
-                <li id ="city"></li>
-                <li id ="temp"></li>
-                <li id ="humidity"></li>
-                <li id="uvIndex"></li>
-                </ul>
-            </div>
-            <div class="col-12 col-md-2" id="day4"><h2>Day 4</h2>
-                <ul>
-                <li src = .img></li>
-                <li id ="city"></li>
-                <li id ="temp"></li>
-                <li id ="humidity"></li>
-                <li id="uvIndex"></li>
-                </ul>
-            </div>
-            <div class="col-12 col-md-2" id="day5"><h2>Day 5</h2>
-                <ul>
-                <li src = .img></li>
-                <li id ="city"></li>
-                <li id ="temp"></li>
-                <li id ="humidity"></li>
-                <li id="uvIndex"></li>
-                </ul>
+            <!-- Beginning of col 2 in rwo 1 -->
+            <div class="col-8 m-2">
+                <!-- Beginning of row 1 in col 2 -->
+                <div class="row-12">
+                    <div class="card">
+                        <div id="today-weather" class="card-body">
+                            <!-- <h3>City:</h3>
+              <p></p>
+              <p></p>
+              <p></p>
+              <p></p> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Beginning of row 2 in col 2 -->
+                <br>
+                <div class="row-12">
+                    <h3>5-Day Forecast:</h3>
+                </div>
+                <!-- Beginning of row 3 in col 2 -->
+                <br>
+                <div id="boxes" class="row">
+                    <!-- Blue box 1
+         <div id="box2" class="col-2 m-2 bg-primary">
+           <h4></h4> -->
+                    <!-- <img>
+           <p></p>
+           <p></p> -->
+                    <!-- </div> -->
+                    <!-- Blue box 2 -->
+                    <!-- <div class="col-2 m-2 bg-primary"> -->
+
+                    <!-- </div> -->
+                    <!-- Blue box 3-->
+                    <!-- <div class="col-2 m-2 bg-primary">
+          <h4></h4> -->
+
+                    <!-- </div> -->
+                    <!-- Blue box 4 -->
+                    <!-- <div class="col-2 m-2 bg-primary">
+         <h4></h4> -->
+
+                    <!-- </div> -->
+                    <!-- Blue box 5 -->
+                    <!-- <div class="col-2 m-2 bg-primary"> -->
+
+                    <!-- </div> -->
+
+                </div>
             </div>
         </div>
 
-<!--Under the main continer (columns?) put the 5 day forcast.--> 
-<!--box1 box2 box3 box4 box5 start with the columns at 2 and go from there-->  
-<!--use the weather icons that match and also include the Weather umbrella in the favicons spot and be sure to cite them-->   
-    
-        
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-        <script src="./assets/js/script.js"></script>
-    </body>
-</html>
+    </div>
 
-<!--http://openweathermap.org/img/wn/10d@2x.png-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

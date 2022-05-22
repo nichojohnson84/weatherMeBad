@@ -1,20 +1,21 @@
-header h1 {
-    text-align: center;
-    background-color: blue;
-    color: whitesmoke;
+ion-icon {
+    color:whitesmoke;
+    --ionicon-stroke-width: 80px;
+  }
+
+.green{
+  background-color: green;
+}
+.yellow{
+  background-color: yellow;
+}
+.orange{
+  background-color: orange;
+}
+.red{
+  background-color: red;
 }
 
-h2 {
-    text-align: center;
-    font-style: italic;
-}
-
-form {
-    padding: 2 1 2 1;
-    flex: auto;
-
-}
-
-#uvIndex, span{
-    background-color: green;
+.purple{
+  background-color: purple;
 }
