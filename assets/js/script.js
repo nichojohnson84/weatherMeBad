@@ -97,7 +97,7 @@ var searchUV = function (lon, lat, city) {
 var displayCityWeather = function (city, citySearchTerm) {
   //out with the old
   cityContainerEl.textContent = '';
-  citySearchTerm.textContent = searchTerm;
+  citySearchTerm.textContent = citySearchTerm;
 
   var displayCurrentDate = document.querySelector('#city-current-date');
   var currentDate = moment();
@@ -120,14 +120,14 @@ var displayCityWeather = function (city, citySearchTerm) {
   displayHumidity.textContent = currentHumidity;
 
   //Windy?
-  var displayWind = document.querySelector('#humidity-input');
+  var displayWind = document.querySelector('#wind-input');
   var currentWind = city.wind.speed + 'MPH';
   displayWind.textContent = currentWind;
 
   //city list
   var newCityEl = document.createElement('li');
   newCityEl.className = 'list-group-item';
-  newCityEl.textContent = searchTerm;
+  newCityEl.textContent = citySearchTerm;
   newCityEl.addEventListener('click', clickHandler);
   previousCityEl.appendChild(newCityEl);
 
@@ -142,13 +142,13 @@ var displayCityWeather = function (city, citySearchTerm) {
 var displayCurrentUV = function (data) {
   var uv = data.value;
   if (uv >= 6) {
-    currentUvEl.classList = 'Danger';
+    currentUvEl.classList = 'badge badge-danger';
     currentUvEl.innerHTML = '' + uv + '';
   } else if (uv > 3) {
-    currentUvEl.classList = 'Warning';
+    currentUvEl.classList = 'badge badge-warning';
     currentUvEl.innerHTML = '' + '';
   } else {
-    currentUvEl.classList = 'Good-to-go';
+    currentUvEl.classList = 'badge badge-success';
     currentUvEl.innerHTML = '' + uv + '';
   }
 };
@@ -194,7 +194,7 @@ var displayForecast = function (list) {
 
     var displayDate3 = document.querySelector('#date-2');
     var forecastDate3 = moment().add(3, 'days').format('L');
-    displayDate1.textContent = forecastDate3;
+    displayDate3.textContent = forecastDate3;
 
     var displayDate4 = document.querySelector('#date-3');
     var forecastDate4 = moment().add(4, 'days').format('L');
@@ -206,15 +206,49 @@ var displayForecast = function (list) {
 
     //need temp - copied current temp syntax and changed to forecast
     var displayTemp = document.querySelector('#temp-input');
-    var forcastTemp = Math.round(city.main.temp) + '°F';
+    var forcastTemp = list[i].main.temp + ' °F';
     displayTemp.textContent = forcastTemp;
 
     //need humidity - trying same process with humidity
     var displayHumidity = document.querySelector('#humidity-input');
-    var forecastHumidity = city.main.humidity + '%';
+    var forecastHumidity = list[i].main.humidity + '%';
     displayHumidity.textContent = forecastHumidity;
 
     //need weather icons
+    var displayIcon1 = document.querySelector('#city-icon-1');
+    var currentIcon1 =
+      'https://openweathermap.org/img/wn/' +
+      list[1].weather[0].icon +
+      '@2x.png';
+    displayIcon1.setAttribute('src', currentIcon1);
+
+    var displayIcon2 = document.querySelector('#city-icon-2');
+    var currentIcon2 =
+      'https://openweathermap.org/img/wn/' +
+      list[2].weather[0].icon +
+      '@2x.png';
+    displayIcon2.setAttribute('src', currentIcon2);
+
+    var displayIcon3 = document.querySelector('#city-icon-3');
+    var currentIcon3 =
+      'https://openweathermap.org/img/wn/' +
+      list[3].weather[0].icon +
+      '@2x.png';
+    displayIcon3.setAttribute('src', currentIcon3);
+
+    var displayIcon4 = document.querySelector('#city-icon-4');
+    var currentIcon4 =
+      'https://openweathermap.org/img/wn/' +
+      list[4].weather[0].icon +
+      '@2x.png';
+    displayIcon4.setAttribute('src', currentIcon4);
+
+    var displayIcon5 = document.querySelector('#city-icon-5');
+    var currentIcon5 =
+      'https://openweathermap.org/img/wn/' +
+      list[5].weather[0].icon +
+      '@2x.png';
+    displayIcon5.setAttribute('src', currentIcon5);
   }
 };
 
