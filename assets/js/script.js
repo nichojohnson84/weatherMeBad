@@ -30,3 +30,34 @@ var formSubmitHandler = function (event) {
     alert('Enter your city in the search');
   }
 };
+
+//click on a past city (history)
+var clickHandler = function (event) {
+
+  var clickCity = event.currentTarget.pastCity;
+
+  getCityWeather(clickCity);
+  getForecast(clickCity);
+};
+
+//request the weather
+var getCityWeather = function(city) {
+  var apiLink = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + key;
+
+  //Success?
+  fetch(apiLink).then(function(response) {
+    if (response.ok) {
+      response.json.then(fuction(data) {
+        displayCityWeather(data, city);
+      });
+    }
+    else {
+      alert("Oh no!:" + response.statusText);
+    }
+  })
+  //Error?
+  .catch(function(error) {
+    alert("Sorry, can't connect to your weather!");
+  })
+}
+
