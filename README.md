@@ -1,13 +1,14 @@
 # weatherMeBad
 
-Using an API for the first time to pull data from an external source to display a 5 day forecast for any city in the US.  Of course the only two in my example are Oakland because I have a cousin there and Salt Lake City.
+Using an API for the first time to pull data from an external source to display a 5 day forecast for any city in the US. Of course the only two in my example are Oakland because I have a cousin there and Salt Lake City.
 
 ## Table of Contents
-* [Installation](#installation)
-* [Usage](#usage)
-* [License](#license)
-* [Contributers](#contributers)
-* [Contact](#contact)
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributers](#contributers)
+- [Contact](#contact)
 
 ## Installation
 
@@ -18,7 +19,7 @@ Using an API for the first time to pull data from an external source to display 
 This will of course be helpful for anyone who travels or enjoys outdoor activities so that if you don't have access to the weather at the time you can just punch in anywhere you want and get the current weather and the upcoming 5 day forecast.
 
 sample image
-![newWeather](https://user-images.githubusercontent.com/94770081/169706512-c785b4e2-365d-479b-86dc-b1ee7813aa0e.png)
+(placeholder)
 
 ## License
 
@@ -27,12 +28,18 @@ sample image
 Contributors
 
 -The AMAZING teaching and TA staff of my Bootcamp: UofU-VIRT-BO-FSF-PT-12-2021-U-B-MW
-Going back to fix this was actually a lot easier at the end of the course after everything we have learned.  It was almost funny to see an application that was so simple.
+Going back to fix this was actually a lot easier at the end of the course after everything we have learned. I learned a lot on this project. When we first did it it was one of the hardest things I had ever tried to do. Then when I tried to redo it I made mistakes that I will not be making again. This is now my 3rd attempt and while it may not be as glorious as I wanted it before it is up and working and all my own. I am very proud of it now and excited to add it to my portfolio.
 
 ## Contact
+
+-If you get any bugs or issues please let me know using the contact info below.
+
 ### Questions & Feedback
 
--I can be reached via  
--Email at nickcjohnson84@outlook.com 
+-I can be reached via
+
+-Email at nickcjohnson84@outlook.com
+
 -LinkedIn via https://www.linkedin.com/in/nick-johnson-6490911a4/
+
 -Or visit my GitHub page https://github.com/nichojohnson84
