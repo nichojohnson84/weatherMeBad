@@ -101,7 +101,7 @@ var displayCityWeather = function (city, citySearchTerm) {
 
   var displayCurrentDate = document.querySelector('#city-current-date');
   var currentDate = moment();
-  displayCurrentDate.textContent = currentDate.format('()');
+  displayCurrentDate.textContent = currentDate.format('(NCJ)');
 
   //icon for weather
   var displayIcon = document.querySelector('#city-current-icon');
@@ -123,4 +123,78 @@ var displayCityWeather = function (city, citySearchTerm) {
   var displayWind = document.querySelector('#humidity-input');
   var currentWind = city.wind.speed + 'MPH';
   displayWind.textContent = currentWind;
+
+  //city list
+  var newCityEl = document.createElement('li');
+  newCityEl.className = 'list-group-item';
+  newCityEl.textContent = searchTerm;
+  newCityEl.addEventListener('click', clickHandler);
+  previousCityEl.appendChild(newCityEl);
+
+  //dangerous uv rays index
+  var lon = city.coord.lon;
+  var lat = city.coord.lat;
+
+  searchUV(lon, lat, city);
 };
+
+//show me the UV
+var displayCurrentUV = function (data) {
+  var uv = data.value;
+  if (uv >= 6) {
+    currentUvEl.classList = 'Danger';
+    currentUvEl.innerHTML = '' + uv + '';
+  } else if (uv > 3) {
+    currentUvEl.classList = 'Warning';
+    currentUvEl.innerHTML = '' + '';
+  } else {
+    currentUvEl.classList = 'Good-to-go';
+    currentUvEl.innerHTML = '' + uv + '';
+  }
+};
+
+//5 day forecast time
+var getForecast = function (city) {
+  var forecastLink =
+    'https//api.openweathermap.org/data/2.5/forecast?q=' +
+    city +
+    '&units=imperial&cnt=6&appid=' +
+    key;
+
+  //success?
+  fetch(forecastLink)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          displayForecast(data.list);
+        });
+      } else {
+        alert('Oh no!:' + response.statusText);
+      }
+    })
+    //Error?
+    .catch(function (error) {
+      alert("Sorry, can't connect to Open Weather!");
+    });
+};
+
+//Show me the forecast please
+var displayDate1 = document.querySelector('#date-0');
+var forecastDate1 = moment().add(1, 'days').format('NCJ');
+displayDate1.textContent = forecastDate1;
+
+var displayDate2 = document.querySelector('#date-1');
+var forecastDate2 = moment().add(2, 'days').format('NCJ');
+displayDate2.textContent = forecastDate2;
+
+var displayDate3 = document.querySelector('#date-2');
+var forecastDate3 = moment().add(3, 'days').format('NCJ');
+displayDate1.textContent = forecastDate3;
+
+var displayDate4 = document.querySelector('#date-3');
+var forecastDate4 = moment().add(4, 'days').format('NCJ');
+displayDate4.textContent = forecastDate4;
+
+var displayDate5 = document.querySelector('#date-4');
+var forecastDate5 = moment().add(5, 'days').format('NCJ');
+displayDate5.textContent = forecastDate5;
