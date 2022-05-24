@@ -1,4 +1,4 @@
-// OpenWeatherMap API. Do not share it publicly.
+// OpenWeatherMap API. Do not share it publicly.  Trust me I know
 var key = 'adcdd39a27408e63496466f128199b0d';
 
 var userFormEl = document.querySelector('#user-form');
@@ -51,13 +51,76 @@ var getCityWeather = function (city) {
   fetch(apiLink)
     .then(function (response) {
       if (response.ok) {
-        response.json.then(fuction(data)(displayCityWeather(data, city)));
+        response.json().then(function (data) {
+          displayCityWeather(data, city);
+        });
       } else {
         alert('Oh no!:' + response.statusText);
       }
     })
     //Error?
     .catch(function (error) {
-      alert("Sorry, can't connect to your weather!");
+      alert("Sorry, can't connect to Open Weather!");
     });
+};
+
+//UV index time
+var searchUV = function (lon, lat, city) {
+  var uvLink =
+    'https://api.openweathermap.org/data/2.5/weather?q=' +
+    city +
+    '&appid=' +
+    key +
+    '&lat=' +
+    lat +
+    '&lon=' +
+    lon;
+
+  fetch(uvLink)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (lon, lat, city) {
+          displayCurrentUV(lon, lat, city);
+        });
+      } else {
+        alert('Oh no!:' + response.statusText);
+      }
+    })
+
+    //connection error?
+    .catch(function (error) {
+      alert("Sorry, can't connect to Open Weather!");
+    });
+};
+
+//Lets See that weather
+var displayCityWeather = function (city, citySearchTerm) {
+  //out with the old
+  cityContainerEl.textContent = '';
+  citySearchTerm.textContent = searchTerm;
+
+  var displayCurrentDate = document.querySelector('#city-current-date');
+  var currentDate = moment();
+  displayCurrentDate.textContent = currentDate.format('()');
+
+  //icon for weather
+  var displayIcon = document.querySelector('#city-current-icon');
+  var currentIcon =
+    'https://openweathermap.org/img/wn/' + city.weather[0].icon + '@2x.png';
+  displayIcon.setAttribute('src', currentIcon);
+
+  //Gimme the temp
+  var displayTemp = document.querySelector('#temp-input');
+  var currentTemp = Math.round(city.main.temp) + '°F';
+  displayTemp.textContent = currentTemp;
+
+  //humiditize
+  var displayHumidity = document.querySelector('#humidity-input');
+  var currentHumidity = city.main.humidity + '%';
+  displayHumidity.textContent = currentHumidity;
+
+  //Windy?
+  var displayWind = document.querySelector('#humidity-input');
+  var currentWind = city.wind.speed + 'MPH';
+  displayWind.textContent = currentWind;
 };
