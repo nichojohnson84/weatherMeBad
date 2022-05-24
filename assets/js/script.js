@@ -1,75 +1,35 @@
-//addeventlistener for search button bring weather for city entered in the text box
-var button = document.getElementById("btn");
-var cityResponse;
-var tempResponse;
-var humidityResponse;
-var uvIndexResponse;
+// OpenWeatherMap API. Do not share it publicly.
+const api = 'adcdd39a27408e63496466f128199b0d';
 
-button.addEventListener("click", getWeather);
-function getWeather(event) {
-  event.preventDefault();
-  var localSearch = event.target.previousSibling.previousSibling.value;
-  var geoSearch =
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
-    localSearch +
-    "&appid=48454c83470277fd99afd700c55b471f";
-  fetch(geoSearch)
-    .then(function (data) {
-      return data.json();
-    })
-    .then(function (response) {
-      var lat = response[0].lat;
-      var lon = response[0].lon;
-      var oneCall = fetch ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=48454c83470277fd99afd700c55b471f");
-    })
-       
-        .then(function (response) {
-            console.log(response)
-          return response.json();
-        })
-        /*
-        .then(function (response) {
-          console.log(response);
-          displayCurrentWeather(response);
-        })
-        .then(function (response) {
-          displayCurrentTemp(response, tempResponse);
-          console.log(tempResponse, response);
-        });*/
+window.addEventListener('load', () => {
+  let long;
+  let lat;
+  // Accesing Geolocation of User
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      // Storing Longitude and Latitude in variables
+      long = position.coords.longitude;
+      lat = position.coords.latitude;
+    });
+  }
+});
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition((position) => {
+    // Storing Longitude and Latitude in variables
+    long = position.coords.longitude;
+    lat = position.coords.latitude;
+    const base = `https://api.openweathermap.org/data/2.5/weatherlat=${lat}&lon=${long}&appid=${api}&units=metric`;
+    console.log(base);
+    fetch(base)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const { temp } = data.main;
+        const place = data.name;
+        const { description, icon } = data.weather[0];
+        const { sunrise, sunset } = data.sys;
+      });
+  });
 }
-
-function displayCurrentWeather(weather, currentCity) {
-  console.log(weather);
-
-  var weatherIcon = document.getElementById("weatherIcon");
-  var city = document.getElementById("city");
-  var temp = document.getElementById("temp");
-  var humidity = document.getElementById("humidity");
-  var uvIndex = document.getElementById("uvIndex");
-  city.textContent = currentCity[0].name;
-  temp.textContent = weather.current.temp + "&deg;";
-}
-/*snow = <p>Unicode:</p>
-<i style='font-size:24px' class='fas'>&#xf2dc;</i>
-
- SUN = <p>Unicode:</p>
-<i style='font-size:24px' class='far'>&#xf185;</i>
-or far fa-sun	
-
-MIXED WEATHER=<p>Used on a button:</p>
-<button style='font-size:24px'>Button <i class='fas fa-cloud-sun-rain'></i></button>
-or fas fa-cloud-sun-rain
-
-WINDY=<p>Unicode:</p>
-<i style='font-size:24px' class='fas'>&#xf72e;</i>
-or fas fa-wind	
-
-LIGHTNING= <p>Unicode:</p>
-<i style='font-size:24px' class='fas'>&#xf0e7;</i>
-or far fa-sun
-
-Rain=<p>Unicode:</p>
-<i style='font-size:24px' class='fas'>&#xf73d;</i>
-or fas fa-cloud-rain*/
-
-//
