@@ -33,7 +33,6 @@ var formSubmitHandler = function (event) {
 
 //click on a past city (history)
 var clickHandler = function (event) {
-
   var clickCity = event.currentTarget.pastCity;
 
   getCityWeather(clickCity);
@@ -41,23 +40,24 @@ var clickHandler = function (event) {
 };
 
 //request the weather
-var getCityWeather = function(city) {
-  var apiLink = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + key;
+var getCityWeather = function (city) {
+  var apiLink =
+    'https://api.openweathermap.org/data/2.5/weather?q=' +
+    city +
+    '&units=imperial&appid=' +
+    key;
 
-  //Success?
-  fetch(apiLink).then(function(response) {
-    if (response.ok) {
-      response.json.then(fuction(data) {
-        displayCityWeather(data, city);
-      });
-    }
-    else {
-      alert("Oh no!:" + response.statusText);
-    }
-  })
-  //Error?
-  .catch(function(error) {
-    alert("Sorry, can't connect to your weather!");
-  })
-}
-
+  //Success?  line 50 had an error so keep an ey on it.
+  fetch(apiLink)
+    .then(function (response) {
+      if (response.ok) {
+        response.json.then(fuction(data)(displayCityWeather(data, city)));
+      } else {
+        alert('Oh no!:' + response.statusText);
+      }
+    })
+    //Error?
+    .catch(function (error) {
+      alert("Sorry, can't connect to your weather!");
+    });
+};
