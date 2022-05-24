@@ -9,3 +9,24 @@ var currentWeather = document.querySelector('#current-weather');
 var previousCityEl = document.getElementById('search-container');
 var fiveDayEl = document.querySelector('#forecast-cards');
 var currentUvEl = document.querySelector('#uv-input');
+
+var cityArray = [];
+
+// search city form submission
+var formSubmitHandler = function (event) {
+  event.preventDefault();
+
+  var city = cityInputEl.value.trim();
+
+  if (city) {
+    getCityWeather(city);
+    getForecast(city);
+
+    cityArray.push(city);
+    localStorage.setItem('city', JSON.stringify(cityArray));
+
+    cityInputEl.value = '';
+  } else {
+    alert('Enter your city in the search');
+  }
+};
