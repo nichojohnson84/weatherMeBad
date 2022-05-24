@@ -204,13 +204,46 @@ var displayForecast = function (list) {
     var forecastDate5 = moment().add(5, 'days').format('L');
     displayDate5.textContent = forecastDate5;
 
-    //need temp - copied current temp syntax and changed to forecast
-    var displayTemp = document.querySelector('#temp-input');
-    var forcastTemp = list[i].main.temp + ' °F';
-    displayTemp.textContent = forcastTemp;
+    //need temp
+    var displayTemp1 = document.querySelector('#temp-0');
+    var forcastTemp1 = list[i].main.temp + ' °F';
+    displayTemp1.textContent = forcastTemp1;
+    console.log(forcastTemp1);
+
+    var displayTemp2 = document.querySelector('#temp-1');
+    var forcastTemp2 = list[i].main.temp + ' °F';
+    displayTemp2.textContent = forcastTemp2;
+
+    var displayTemp3 = document.querySelector('#temp-2');
+    var forcastTemp3 = list[i].main.temp + ' °F';
+    displayTemp3.textContent = forcastTemp3;
+
+    var displayTemp4 = document.querySelector('#temp-3');
+    var forcastTemp4 = list[i].main.temp + ' °F';
+    displayTemp4.textContent = forcastTemp4;
+
+    var displayTemp5 = document.querySelector('#temp-4');
+    var forcastTemp5 = list[i].main.temp + ' °F';
+    displayTemp5.textContent = forcastTemp5;
 
     //need humidity - trying same process with humidity
-    var displayHumidity = document.querySelector('#humidity-input');
+    var displayHumidity = document.querySelector('#humidity-0');
+    var forecastHumidity = list[i].main.humidity + '%';
+    displayHumidity.textContent = forecastHumidity;
+
+    var displayHumidity = document.querySelector('#humidity-1');
+    var forecastHumidity = list[i].main.humidity + '%';
+    displayHumidity.textContent = forecastHumidity;
+
+    var displayHumidity = document.querySelector('#humidity-2');
+    var forecastHumidity = list[i].main.humidity + '%';
+    displayHumidity.textContent = forecastHumidity;
+
+    var displayHumidity = document.querySelector('#humidity-3');
+    var forecastHumidity = list[i].main.humidity + '%';
+    displayHumidity.textContent = forecastHumidity;
+
+    var displayHumidity = document.querySelector('#humidity-4');
     var forecastHumidity = list[i].main.humidity + '%';
     displayHumidity.textContent = forecastHumidity;
 
