@@ -4,17 +4,57 @@ header h1 {
     color: whitesmoke;
 }
 
-h2 {
+body {
+    background: url('https://burst.shopifycdn.com/photos/beach-at-sunset-in-teal-and-orange.jpg?width=1200format=pjpg&exif=1&iptc=1');
+}
+
+header h1 {
     text-align: center;
-    font-style: italic;
+    background-color: blue;
+    color: whitesmoke;
 }
 
-form {
-    padding: 2 1 2 1;
-    flex: auto;
-
+.section-title {
+    padding-bottom: 15px;
+    font-size: 50px;
 }
 
-#uvIndex {
-/* placeholder for uv formula's     */
+.search {
+    margin: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.forecast-header {
+    margin: 10px;
+}
+
+#forecast-cards {
+    justify-content: space-around;
+}
+
+.card-content {
+    margin: 30px;
+}
+
+.current-weather, .weather-input {
+    margin: 5px;
+}
+
+.weather-container {
+    margin: 150px auto;
+    background-color: #fff;
+    padding: 50px 50px;
+    border-radius: 10px;
+    opacity: 80%;
+}
+
+.card {
+    background-color: #80b1da;
+}
+
+.btn {
+    background-color: #80b1da;
 }

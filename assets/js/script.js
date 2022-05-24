@@ -1,5 +1,5 @@
 // OpenWeatherMap API. Do not share it publicly.  Trust me I know
-var key = 'adcdd39a27408e63496466f128199b0d';
+var apiKey = 'adcdd39a27408e63496466f128199b0d';
 
 var userFormEl = document.querySelector('#user-form');
 var cityInputEl = document.querySelector('#city-input');
@@ -41,14 +41,14 @@ var clickHandler = function (event) {
 
 //request the weather
 var getCityWeather = function (city) {
-  var apiLink =
+  var apiURL =
     'https://api.openweathermap.org/data/2.5/weather?q=' +
     city +
     '&units=imperial&appid=' +
-    key;
+    apiKey;
 
   //Success?  line 50 had an error so keep an ey on it.
-  fetch(apiLink)
+  fetch(apiURL)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
@@ -66,17 +66,17 @@ var getCityWeather = function (city) {
 
 //UV index time
 var searchUV = function (lon, lat, city) {
-  var uvLink =
-    'https://api.openweathermap.org/data/2.5/weather?q=' +
+  var uvURL =
+    'https://api.openweathermap.org/data/2.5/uvi?q=' +
     city +
     '&appid=' +
-    key +
+    apiKey +
     '&lat=' +
     lat +
     '&lon=' +
     lon;
 
-  fetch(uvLink)
+  fetch(uvURL)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (lon, lat, city) {
@@ -101,7 +101,7 @@ var displayCityWeather = function (city, citySearchTerm) {
 
   var displayCurrentDate = document.querySelector('#city-current-date');
   var currentDate = moment();
-  displayCurrentDate.textContent = currentDate.format('(NCJ)');
+  displayCurrentDate.textContent = currentDate.format('(L)');
 
   //icon for weather
   var displayIcon = document.querySelector('#city-current-icon');
@@ -156,10 +156,10 @@ var displayCurrentUV = function (data) {
 //5 day forecast time
 var getForecast = function (city) {
   var forecastLink =
-    'https//api.openweathermap.org/data/2.5/forecast?q=' +
+    'https://api.openweathermap.org/data/2.5/forecast?q=' +
     city +
     '&units=imperial&cnt=6&appid=' +
-    key;
+    apiKey;
 
   //success?
   fetch(forecastLink)
@@ -178,23 +178,45 @@ var getForecast = function (city) {
     });
 };
 
-//Show me the forecast please
-var displayDate1 = document.querySelector('#date-0');
-var forecastDate1 = moment().add(1, 'days').format('NCJ');
-displayDate1.textContent = forecastDate1;
+//need for loop for forcast
+var displayForecast = function (list) {
+  console.log(list);
 
-var displayDate2 = document.querySelector('#date-1');
-var forecastDate2 = moment().add(2, 'days').format('NCJ');
-displayDate2.textContent = forecastDate2;
+  for (var i = 0; i <= 4; i++) {
+    //Show me the forecast please
+    var displayDate1 = document.querySelector('#date-0');
+    var forecastDate1 = moment().add(1, 'days').format('L');
+    displayDate1.textContent = forecastDate1;
 
-var displayDate3 = document.querySelector('#date-2');
-var forecastDate3 = moment().add(3, 'days').format('NCJ');
-displayDate1.textContent = forecastDate3;
+    var displayDate2 = document.querySelector('#date-1');
+    var forecastDate2 = moment().add(2, 'days').format('L');
+    displayDate2.textContent = forecastDate2;
 
-var displayDate4 = document.querySelector('#date-3');
-var forecastDate4 = moment().add(4, 'days').format('NCJ');
-displayDate4.textContent = forecastDate4;
+    var displayDate3 = document.querySelector('#date-2');
+    var forecastDate3 = moment().add(3, 'days').format('L');
+    displayDate1.textContent = forecastDate3;
 
-var displayDate5 = document.querySelector('#date-4');
-var forecastDate5 = moment().add(5, 'days').format('NCJ');
-displayDate5.textContent = forecastDate5;
+    var displayDate4 = document.querySelector('#date-3');
+    var forecastDate4 = moment().add(4, 'days').format('L');
+    displayDate4.textContent = forecastDate4;
+
+    var displayDate5 = document.querySelector('#date-4');
+    var forecastDate5 = moment().add(5, 'days').format('L');
+    displayDate5.textContent = forecastDate5;
+
+    //need temp - copied current temp syntax and changed to forecast
+    var displayTemp = document.querySelector('#temp-input');
+    var forcastTemp = Math.round(city.main.temp) + '°F';
+    displayTemp.textContent = forcastTemp;
+
+    //need humidity - trying same process with humidity
+    var displayHumidity = document.querySelector('#humidity-input');
+    var forecastHumidity = city.main.humidity + '%';
+    displayHumidity.textContent = forecastHumidity;
+
+    //need weather icons
+  }
+};
+
+//display results
+userFormEl.addEventListener('submit', formSubmitHandler);
